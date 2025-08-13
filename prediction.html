@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Quality Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('/static/pred.jpg') no-repeat center center/cover;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen text-white">
+
+    <!-- Navigation Bar -->
+    <header class="bg-black w-full p-6 text-center shadow-lg">
+        <nav class="mt-2">
+            <a href="/" class="mx-4 text-white hover:text-yellow-600">Home</a>
+            <a href="/prediction" class="mx-4 text-white hover:text-yellow-600">Prediction</a>
+            <a href="/suitability" class="mx-4 text-white hover:text-yellow-600">Suitability</a>
+            <a href="https://thingspeak.mathworks.com/channels/2875345"
+                class="mx-4 text-white hover:text-yellow-600">Water Report</a>
+            <a href="/about" class="mx-4 text-white hover:text-yellow-600">About</a>
+            <a href="/contactus" class="mx-4 text-white hover:text-yellow-600">Contact Us</a>
+        </nav>
+    </header>
+
+    <!-- Prediction Form Container -->
+    <div class="w-full max-w-5xl bg-white text-black shadow-lg rounded-lg p-8 mx-auto mt-24 z-20">
+        <div class="text-2xl font-bold mb-4 text-center text-gray-800">Water Quality Prediction</div>
+        <div class="bg-gray-50 p-8 rounded-lg border border-gray-300">
+            <form id="prediction-form" action="/prediction" method="POST">
+                <div class="grid grid-cols-1 gap-6 mb-4">
+                    <div>
+                        <label for="num_years" class="block text-sm font-medium text-gray-700">Number of Years for
+                            Prediction:</label>
+                        <input type="number" id="num_years" name="num_years"
+                            class="mt-1 p-4 w-full border border-gray-300 rounded-md" min="1" required>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-teal-500 text-white py-4 rounded-lg mt-4">Predict</button>
+            </form>
+        </div>
+
+        <!-- Prediction Results -->
+        {% if predictions %}
+        <div class="mt-8">
+            <h3 class="text-lg font-bold">Predictions for {{ num_years }} Years:</h3>
+            <ul class="list-disc pl-6">
+                {% for prediction in predictions %}
+                <li>Year {{ loop.index }}:
+                    Temperature: {{ prediction.Temperature | round(2) }} °C,
+                    PPM: {{ prediction.PPM | round(1) }},
+                    Conductivity: {{ prediction.Conductivity | round(2) }} EC,
+                    Turbidity: {{ prediction.Turbidity | round(2) }} NTU
+                    Drinkable: {{ 'Yes' if (prediction.PPM <= 300 and prediction.Conductivity <=0.5 and
+                        prediction.Turbidity <=5) else 'No' }} </li>
+                        {% endfor %}
+            </ul>
+        </div>
+
+        <div class="mt-8">
+            <h3 class="text-lg font-bold">Actual vs Predicted Values:</h3>
+            <img src="data:image/png;base64,{{ actual_vs_predicted_url }}" alt="Actual vs Predicted" class="mx-auto">
+        </div>
+
+        <!-- Prediction Plots -->
+        <div class="mt-8">
+            <h3 class="text-lg font-bold">Prediction Trends:</h3>
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Prediction Trends" class="mx-auto">
+        </div>
+
+        <!-- Correlation Heatmap -->
+        <div class="mt-8">
+            <h3 class="text-lg font-bold">Feature Correlation Heatmap:</h3>
+            <img src="data:image/png;base64,{{ heatmap_url }}" alt="Correlation Heatmap" class="mx-auto">
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

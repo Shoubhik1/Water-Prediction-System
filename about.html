@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Water Quality Prediction Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('/static/waterb.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .content-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 50px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #008080; /* Teal color */
+        }
+
+        .section-text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .nav-link {
+            color: white;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ffcc00;
+            border-bottom: 2px solid #ffcc00;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+    <!-- Navigation Bar -->
+    <header class="bg-black p-6 shadow-md">
+        <nav class="flex justify-center space-x-6">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/prediction" class="nav-link">Prediction</a>
+            <a href="/suitability" class="nav-link">Suitability</a>
+            <a href="https://thingspeak.mathworks.com/channels/2875345" class="nav-link">Water Report</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/contactus" class="nav-link">Contact Us</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="content-container">
+        <!-- Project Abstract Section -->
+        <div>
+            <h2 class="section-title">About This Project</h2>
+            <p class="section-text">
+                The Water Quality Prediction project leverages advanced machine learning techniques, specifically Long Short-Term Memory (LSTM) neural networks, to forecast key water quality metrics such as Temperature, PPM (Parts Per Million), Conductivity, and Turbidity. By analyzing historical data and environmental factors, the project aims to provide insights into the future state of water quality.
+            </p>
+            <p class="section-text mt-6">
+                This model empowers users to make informed decisions regarding water safety, management, and public health. The project includes an easy-to-use interface where users can input parameters, view predictions, and analyze visualizations comparing actual and predicted values. With a focus on environmental monitoring, the project ensures communities are prepared to tackle future water quality challenges.
+            </p>
+        </div>
+
+        <!-- Project Purpose Section -->
+        <div class="mt-12">
+            <h3 class="section-title">Project Purpose</h3>
+            <p class="section-text">
+                The goal of the Water Quality Prediction project is to help stakeholders, from environmental agencies to industries, understand how various factors affect water quality over time. The tool provides early warnings for potential issues such as contaminants, turbidity, or conductivity levels that may affect public health and the environment. By using cutting-edge machine learning models, the system provides accurate forecasts for years to come, helping mitigate risks and optimize water quality management.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

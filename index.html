@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Quality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('/static/waterb.jpg') no-repeat center center/cover;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen text-white">
+
+    <header class="bg-black w-full p-6 text-center shadow-lg">
+        <nav class="mt-2">
+            <a href="/" class="mx-4 text-white hover:text-yellow-600">Home</a>
+            <a href="/prediction" class="mx-4 text-white hover:text-yellow-600">Prediction</a>
+            <a href="/suitability" class="mx-4 text-white hover:text-yellow-600">Suitability</a>
+            <a href="https://thingspeak.mathworks.com/channels/2875345"
+                class="mx-4 text-white hover:text-yellow-600">Water Report</a>
+            <a href="/about" class="mx-4 text-white hover:text-yellow-600">About</a>
+            <a href="/contactus" class="mx-4 text-white hover:text-yellow-600">Contact Us</a>
+        </nav>
+    </header>
+
+    <main class="flex flex-col items-center justify-center flex-grow text-center p-6 mt-20">
+        <h1 class="text-5xl font-bold">Water Quality Monitoring & Predictions</h1>
+        <p class="text-lg mt-8">Predicting the future of water quality and providing real-time reports</p>
+
+        <!-- Buttons to direct users to respective pages -->
+        <section class="flex gap-8 mt-40">
+            <!-- Button for current water quality -->
+            <a href="https://thingspeak.mathworks.com/channels/2875345"
+                class="bg-white text-black font-bold py-4 px-6 rounded-lg text-center shadow-lg hover:bg-teal-900 hover:text-white transition duration-300">
+                View Current Water Quality
+            </a>
+
+            <!-- Button for water quality prediction -->
+            <a href="/prediction"
+                class="bg-white text-black font-bold py-4 px-6 rounded-lg text-center shadow-lg hover:bg-teal-900 hover:text-white transition duration-300">
+                Predict Future Water Quality
+            </a>
+        </section>
+    </main>
+
+    <!-- Section to provide more information about the website's features -->
+    <section class="bg-black bg-opacity-80 p-10 mt-10 text-center">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-6 border border-gray-700 rounded-lg">
+                <h2 class="text-2xl font-bold">Current Water Quality Reports</h2>
+                <p class="mt-2">Get real-time updates and reports on the water quality in your area. View detailed data
+                    on purity levels, contaminants, and potential risks to ensure the safety of your water supply.</p>
+                <a href="water_purity.html" class="text-blue-400 hover:underline mt-2 inline-block">Learn More</a>
+            </div>
+            <div class="p-6 border border-gray-700 rounded-lg">
+                <h2 class="text-2xl font-bold">Water Quality Predictions</h2>
+                <p class="mt-2">Using advanced environmental and industrial data, we predict the water quality in your
+                    area for the coming years. This feature helps you plan and take proactive steps to ensure the safety
+                    of your water supply.</p>
+                <a href="/templates/prediction.html" class="text-blue-400 hover:underline mt-2 inline-block">Learn
+                    More</a>
+            </div>
+            <div class="p-6 border border-gray-700 rounded-lg">
+                <h2 class="text-2xl font-bold">Improvement Solutions</h2>
+                <p class="mt-2">We offer expert advice and solutions for improving your water quality, including
+                    filtration and purification systems. Find the right solution for your home or business.</p>
+                <a href="#" class="text-blue-400 hover:underline mt-2 inline-block">Learn More</a>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

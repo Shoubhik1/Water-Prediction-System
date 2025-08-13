@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suitability Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('/static/pred.jpg') no-repeat center center/cover;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen text-white">
+
+    <!-- Navbar -->
+    <header class="bg-black w-full p-6 text-center shadow-lg">
+        <nav class="mt-2">
+            <a href="/" class="mx-4 text-white hover:text-yellow-600">Home</a>
+            <a href="/prediction" class="mx-4 text-white hover:text-yellow-600">Prediction</a>
+            <a href="/suitability" class="mx-4 text-white hover:text-yellow-600">Suitability</a>
+            <a href="https://thingspeak.mathworks.com/channels/2875345"
+                class="mx-4 text-white hover:text-yellow-600">Water Report</a>
+            <a href="/about" class="mx-4 text-white hover:text-yellow-600">About</a>
+            <a href="/contactus" class="mx-4 text-white hover:text-yellow-600">Contact Us</a>
+        </nav>
+    </header>
+
+    <!-- Form -->
+    <div class="w-full max-w-4xl bg-white text-black shadow-lg rounded-lg p-8 mx-auto mt-24 z-20">
+        <div class="text-2xl font-bold mb-4 text-center text-gray-800">Water Suitability</div>
+        <div class="bg-gray-50 p-8 rounded-lg border border-gray-300">
+            <form action="/suitability" method="POST">
+                <div class="mb-4">
+                    <label for="num_years" class="block text-sm font-medium text-gray-700">Number of Years:</label>
+                    <input type="number" id="num_years" name="num_years" class="mt-1 p-2 w-full border border-gray-300 rounded-md" min="1" required>
+                </div>
+                <div class="mb-4">
+                    <label for="purpose_choice" class="block text-sm font-medium text-gray-700">Purpose:</label>
+                    <select name="purpose_choice" id="purpose_choice" class="mt-1 p-2 w-full border border-gray-300 rounded-md" required>
+                        <option value="">-- Select Purpose --</option>
+                        <option value="1">Drinking</option>
+                        <option value="2">Aquaculture</option>
+                        <option value="3">Agriculture</option>
+                        <option value="4">Industrial</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-teal-500 text-white py-3 rounded-lg">Predict</button>
+            </form>
+        </div>
+
+        <!-- Predictions -->
+        {% if predictions %}
+<div class="mt-8">
+    <h3 class="text-lg font-bold">Suitability for {{ num_years }} Years ({{ purpose }})</h3>
+    <ul class="list-disc pl-6 space-y-2">
+        {% for i in range(num_years) %}
+        <li>
+            Year {{ i + 1 }}:
+            Temperature: {{ predictions[i].Temperature|round(2) }} °C,
+            PPM: {{ predictions[i].PPM|round(1) }},
+            Conductivity: {{ predictions[i].Conductivity|round(2) }} EC,
+            Turbidity: {{ predictions[i].Turbidity|round(2) }} NTU,
+            Suitable: {{ suitability_results[i] }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+    </div>
+
+</body>
+</html>
